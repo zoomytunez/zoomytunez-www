@@ -1,0 +1,17 @@
+.PageHeading {
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+.PageHeading h2 {
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.PageHeading p {
+  margin-top: 0.5rem;
+  font-weight: 500;
+  font-size: 1rem;
+}

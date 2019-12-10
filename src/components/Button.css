@@ -7,18 +7,46 @@
   background: #c7520e;
   padding: 1.25rem 3rem;
   border-radius: 100px;
-  border: 0;
+  border: 2px solid #c7520e;
+  text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   transition: 0.125s ease;
   box-shadow: 0 0 0 -1px white;
   text-decoration: none;
+  min-width: 12rem;
+}
+
+.Button-secondary {
+  color: #c7520e;
+  background: transparent;
+}
+
+.Button-secondary:hover {
+  color: white;
 }
 
 .Button:disabled {
   opacity: 0.75;
 }
 
-.Button:focus {
+.Button:hover {
+  background-color: #e4641a;
+  border-color: #e4641a;
+}
+
+.-focus-ring,
+.-focus-ring-dark {
+  transition: 0.125s box-shadow ease;
+}
+
+.Button:focus,
+.-focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0px 2px white, 0 0 0px 4px #c7520e;
+}
+.Button-dark:focus,
+.-focus-ring-dark:focus {
+  outline: none;
   box-shadow: 0 0 0px 2px white;
 }

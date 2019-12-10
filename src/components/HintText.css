@@ -1,0 +1,9 @@
+.HintText {
+  margin-top: 1rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.HintText h3 {
+  font-size: 1rem;
+  font-weight: 700;
+}

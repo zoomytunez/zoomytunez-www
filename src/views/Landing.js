@@ -18,6 +18,7 @@ function Landing(props) {
         </p>
         <Button
           type="link"
+          theme="dark"
           disabled={props.loading}
           href={SERVICE_URL + "auth/login/spotify?from=" + encodeURIComponent(WWW_URL)}
         >{props.loading ? "Loading…" : "Login with Spotify"}</Button>

@@ -1,0 +1,35 @@
+.HeightEntry-hint {
+  color: rgba(0, 0, 0, 0.6);
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+.HeightEntry-area {
+  font-size: 3rem;
+  color: #FF7F37;
+}
+
+.HeightEntry-area label:first-child {
+  margin-right: 1rem;
+}
+
+.HeightEntry-area input {
+  margin: 1rem 0;
+  font-size: 4rem;
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  border-bottom: 2px solid #FF7F37;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+  border-radius: 0.1px;
+  text-align: right;
+}
+
+input {
+  background: none;
+  font-family: inherit;
+  border-bottom: 2px solid #FF7F37;
+
+}

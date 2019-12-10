@@ -1,9 +1,11 @@
 html {
   height: 100%;
+  margin: 0;
 }
 
 body {
-  background: #ddd;
+  background: #E5E5E5;
   font-family: "Roboto", "Helvetica", arial, sans-serif;
   height: 100%;
+  margin: 0;
 }
