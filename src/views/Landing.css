@@ -1,0 +1,60 @@
+.Landing {
+  color: white;
+}
+
+.Landing .Logo {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+}
+
+.Landing-center {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 0 24px black;
+}
+
+.Landing h2 {
+  font-weight: 700;
+  font-size: 5rem;
+  line-height: 1.175;
+  margin: 0;
+}
+
+.Landing p {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-top: 1rem;
+}
+
+.Landing-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background:  url(Landing/hero1.jpg);
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+  filter: contrast(0.75) brightness(0.4);
+}
+
+.Landing .Button {
+  margin-top: 4rem;
+  background-color: #098836;
+  text-shadow: none;
+}
+
+.Landing .Button:hover {
+  background-color: #149842;
+}

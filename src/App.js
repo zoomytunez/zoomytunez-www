@@ -1,26 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Landing from './views/Landing';
+
+import {getUser} from "./zoomy/api";
+
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      ready: false,
+      loggedIn: false
+    }
+
+    getUser().then(() => {
+      this.setState({
+        "ready": true,
+        "loggedIn": true,
+      })
+    }).catch(() => {
+      this.setState({
+        "ready": true,
+        "loggedIn": false,
+      })
+    })
+
+  }
+
+  render() {
+    return (
+      <div className="App">
+        {(this.state.ready && this.state.loggedIn) ||
+          <Landing loading={!this.state.ready}/>}
+        you are logged in
+      </div>
+    );
+  }
 }
 
 export default App;

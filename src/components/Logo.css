@@ -1,0 +1,15 @@
+.Logo {
+  color: white;
+  margin: 0;
+  display: inline-block;
+}
+
+.Logo-a {
+  font-weight: 300;
+  font-style: italic;
+}
+
+.Logo-b {
+  font-weight: 900;
+  font-style: normal;
+}
