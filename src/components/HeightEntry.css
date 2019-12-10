@@ -1,19 +1,13 @@
-.HeightEntry-hint {
-  color: rgba(0, 0, 0, 0.6);
-  text-transform: uppercase;
-  font-size: 0.875rem;
-}
-
-.HeightEntry-area {
+.-giant-input-card {
   font-size: 3rem;
   color: #FF7F37;
 }
 
-.HeightEntry-area label:first-child {
+.-giant-input-card label:not(:last-child) {
   margin-right: 1rem;
 }
 
-.HeightEntry-area input {
+.-giant-input-card input {
   margin: 1rem 0;
   font-size: 4rem;
   appearance: none;
@@ -27,9 +21,8 @@
   text-align: right;
 }
 
-input {
+.-giant-input-card input {
   background: none;
   font-family: inherit;
   border-bottom: 2px solid #FF7F37;
-
 }

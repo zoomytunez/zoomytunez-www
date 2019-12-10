@@ -12,3 +12,17 @@
   padding: 4rem 1rem 2rem;
   max-width: 32rem;
 }
+
+.step-button-group {
+  margin-top: 4rem;
+  display: flex;
+}
+
+.step-button-group > .Button:not(:last-of-type) {
+  margin-right: 2rem;
+}
+
+.step-button-group .Button {
+  padding: 1rem 2rem;
+  min-width: 10rem;
+}

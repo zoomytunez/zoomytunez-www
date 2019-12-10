@@ -27,7 +27,7 @@ class HeightEntry extends React.Component {
   }
 
   setFeet(evt) {
-    let ft = this.format(parseInt(evt.target.value) || 0, 0, 10)
+    let ft = this.format(parseInt(evt.target.value) || 0, 0, 9)
     this.publish(ft * 12 + this.state.inValue)
     this.setState({
       ftValue: ft || "",
@@ -50,7 +50,7 @@ class HeightEntry extends React.Component {
       }
 
       inches = this.format(inches, 0, 11);
-      ft = this.format(ft, 0, 10);
+      ft = this.format(ft, 0, 9);
     }
 
     this.publish(+(ft * 12 + inches));
@@ -64,19 +64,17 @@ class HeightEntry extends React.Component {
   render() {
     return (
       <div className="HeightEntry">
-        <Card>
-          <div className="HeightEntry-hint">
-            Height
-          </div>
-          <div className="HeightEntry-area">
+        <Card title="Height">
+          <div className="HeightEntry-area -giant-input-card">
             <label>
               <input
                 className="-focus-ring"
                 type="number"
-                max="8"
+                max="9"
                 min="1"
                 value={this.state.ftValue}
                 onChange={this.setFeet}
+                style={{width:"1.25em"}}
               />
               ft
             </label>
@@ -88,6 +86,7 @@ class HeightEntry extends React.Component {
                 min="-1"
                 value={this.state.inValue}
                 onChange={this.setInches}
+                style={{width:"1.75em"}}
               />
               in
             </label>
