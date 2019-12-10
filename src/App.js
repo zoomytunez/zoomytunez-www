@@ -33,7 +33,7 @@ class App extends React.Component {
       <div className="App">
         {(this.state.ready && this.state.loggedIn) ||
           <Landing loading={!this.state.ready}/>}
-        you are logged in
+        {this.state.loggedIn && "logged in"}
       </div>
     );
   }
