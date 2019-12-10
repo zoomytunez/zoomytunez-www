@@ -13,6 +13,14 @@
   max-width: 32rem;
 }
 
+.-step-wide {
+  max-width: 52rem;
+}
+
+.-step-extra-wide {
+  max-width: 82rem;
+}
+
 .step-button-group {
   margin-top: 4rem;
   display: flex;

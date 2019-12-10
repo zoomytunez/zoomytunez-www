@@ -1,0 +1,14 @@
+.IntensityCurve {
+
+}
+
+
+.IntensityCurve ._background {
+  fill: white;
+}
+
+.IntensityCurve ._curve {
+  stroke: #ff7f37;
+  stroke-width: 4px;
+  stroke-linecap: round;
+}

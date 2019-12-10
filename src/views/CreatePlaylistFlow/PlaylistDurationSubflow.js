@@ -40,12 +40,14 @@ class PlaylistDurationSubflow extends React.Component {
           </div>
         </Card>
         <div className="step-button-group">
-          <Button
-            onClick={this.commit}
-            weight="secondary"
-          >
-            Back
-          </Button>
+          {this.props.back &&
+            <Button
+              onClick={this.props.back}
+              weight="secondary"
+            >
+              Back
+            </Button>
+          }
           <Button
             onClick={this.props.continue}
             disabled={this.props.continue === null}>

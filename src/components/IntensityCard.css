@@ -1,0 +1,15 @@
+.IntensityCard {
+  border-radius: 10px;
+}
+
+.IntensityCard .Card {
+  width: 20rem;
+  height: 12rem;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.IntensityCard-selected {
+  box-shadow: 0 0 0 4px #FF7F37;
+}
