@@ -64,7 +64,6 @@ class PlaylistTemplateSubflow extends React.Component {
     this.state = {
       selected: 0,
     };
-    this.set(0)
   }
 
   set(i) {
@@ -78,6 +77,12 @@ class PlaylistTemplateSubflow extends React.Component {
         time: point.time * this.props.duration * 60
       }))
     })
+  }
+
+  componentDidMount() {
+    if (!this.props.curve) {
+      this.set(0)
+    }
   }
 
   render() {
@@ -94,10 +99,10 @@ class PlaylistTemplateSubflow extends React.Component {
               <button
                 onClick={_=>this.set(i)}
                 className="-focus-ring"
+                key={template.title}
               >
                 <IntensityCard
                   selected={this.state.selected === i}
-                  key={template.title}
                   title={template.title}
                   curve={{
                     duration: 1,
