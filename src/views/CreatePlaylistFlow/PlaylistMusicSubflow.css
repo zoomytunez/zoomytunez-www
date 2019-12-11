@@ -1,0 +1,27 @@
+.PlaylistMusicSubflow > .Card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 24rem;
+}
+
+.PlaylistMusicSubflow-searchbox {
+  appearance: none;
+  border: 1px solid #A9AEB8;
+  border-radius: 100px;
+  background: white;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  position: relative;
+}
+
+.PlaylistMusicSubflow-searchbox::placeholder {
+  color: #A9AEB8;
+}
+
+.PlaylistMusicSubflow .--placeholder {
+  margin: 4rem 0 2rem;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+}

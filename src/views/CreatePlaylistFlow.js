@@ -22,13 +22,26 @@ class CreatePlaylistFlow extends React.Component {
     this.state = {
       step: 0,
       duration: 30,
-      curve: null
+      // curve: {
+      //   duration: 1800,
+      //   points: [
+      //     {
+      //       time: 0,
+      //       pace: 12
+      //     },
+      //     {
+      //       time: 1800,
+      //       pace: 12
+      //     }
+      //   ]
+      // }
     };
 
     this.setDuration = this.setDuration.bind(this);
     this.setCurve = this.setCurve.bind(this);
     this.previousStep = this.previousStep.bind(this);
     this.nextStep = this.nextStep.bind(this);
+    this.commitMusic = this.commitMusic.bind(this);
   }
 
   previousStep() {
@@ -53,6 +66,16 @@ class CreatePlaylistFlow extends React.Component {
     this.setState({
       curve: curve
     })
+  }
+
+  commitMusic(seeds) {
+    // switch to next page
+    this.setState({
+      step: 4
+    })
+
+    // simulate loading for now...
+    window.setTimeout(this.nextStep, 3000)
   }
 
   render() {
@@ -84,12 +107,15 @@ class CreatePlaylistFlow extends React.Component {
           />
         : this.state.step === 3 ?
           <PlaylistMusicSubflow
+            back={this.previousStep}
+            continue={this.commitMusic}
           />
         : this.state.step === 4 ?
           <PlaylistLoadingSubflow
           />
         : /* this.state.step === 5 */
           <PlaylistReviewSubflow
+            back={this.commitMusic}
           />
         }
       </div>

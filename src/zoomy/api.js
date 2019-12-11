@@ -13,6 +13,14 @@ function api(endpoint, options) {
   }).then(data=>data.json())
 }
 
+function encode(params) {
+  let parts = []
+  for (let name of Object.keys(params)) {
+    parts.push(window.encodeURIComponent(name) + "=" + window.encodeURIComponent(params[name]))
+  }
+  return parts.join('&')
+}
+
 export function getUser() {
   return api("user")
 }
@@ -22,4 +30,8 @@ export function setHeight(height) {
     "method": "post",
     "body": height
   })
+}
+
+export function search(query, limit=50, offset=0) {
+  return api("search?" + encode({q:query, limit, offset}))
 }

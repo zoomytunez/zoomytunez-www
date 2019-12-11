@@ -1,7 +1,6 @@
 import React from 'react';
 import './PlaylistCustomizeSubflow.css';
 
-
 import PageHeading from '../../components/PageHeading';
 import Button from '../../components/Button';
 import IntensityCard from '../../components/IntensityCard';
@@ -21,9 +20,8 @@ class PlaylistCustomizeSubflow extends React.Component {
           subhead="Choose your desired pacing for your workout."
         />
 
-        <div className="PlaylistCustomizeSubflow-contents">
+        <div className="-wider-step-contents">
           <IntensityCard
-            title="your run"
             curve={this.props.curve}
             size="large"
             publish={this.props.publish}

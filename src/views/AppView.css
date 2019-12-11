@@ -13,6 +13,11 @@
   max-width: 32rem;
 }
 
+.-wider-step-contents {
+  width: calc(100% + 8rem);
+  margin: 0rem -4rem;
+}
+
 .-step-wide {
   max-width: 52rem;
 }

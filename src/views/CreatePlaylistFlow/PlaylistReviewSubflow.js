@@ -1,6 +1,8 @@
 import React from 'react';
 import './PlaylistReviewSubflow.css';
 
+import Button from '../../components/Button';
+
 class PlaylistReviewSubflow extends React.Component {
   constructor(props) {
     super(props);
@@ -9,8 +11,16 @@ class PlaylistReviewSubflow extends React.Component {
 
   render() {
     return (
-      <div className="PlaylistReviewSubflow">
+      <div className="PlaylistReviewSubflow -standard-step -step-extra-wide">
         [Review]
+
+
+          <Button
+            onClick={this.props.back}
+            weight="secondary"
+          >
+            Try again
+          </Button>
       </div>
     );
   }
