@@ -22,6 +22,7 @@ class CreatePlaylistFlow extends React.Component {
     this.state = {
       step: 0,
       duration: 30,
+      curve: null
     };
 
     this.setDuration = this.setDuration.bind(this);
@@ -75,6 +76,11 @@ class CreatePlaylistFlow extends React.Component {
           />
         : this.state.step === 2 ?
           <PlaylistCustomizeSubflow
+            duration={this.state.duration}
+            curve={this.state.curve}
+            publish={this.setCurve}
+            back={this.previousStep}
+            continue={this.nextStep}
           />
         : this.state.step === 3 ?
           <PlaylistMusicSubflow

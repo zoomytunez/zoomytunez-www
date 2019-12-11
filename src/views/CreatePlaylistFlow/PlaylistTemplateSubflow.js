@@ -90,7 +90,7 @@ class PlaylistTemplateSubflow extends React.Component {
       <div className="PlaylistTemplateSubflow -standard-step -step-extra-wide">
         <PageHeading
           heading="Choose a starting point"
-          subhead="You’ll be able to customize the intensity next!"
+          subhead="You’ll be able to fine tune the intensity next!"
         />
 
         <div className="PlaylistTemplateSubflow-card-grid">

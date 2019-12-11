@@ -4,10 +4,26 @@ import './IntensityCard.css';
 import Card from './Card';
 import IntensityCurve from './IntensityCurve';
 
+
+const SIZES = {
+  "small": {
+    w: 320,
+    h: 160,
+  },
+  "large": {
+    w: 544,
+    h: 352,
+  }
+}
+
 class IntensityCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  static defaultProps = {
+    size: "small"
   }
 
   render() {
@@ -15,10 +31,18 @@ class IntensityCard extends React.Component {
     if (this.props.selected) {
       className += " IntensityCard-selected"
     }
+    className += " IntensityCard-" + this.props.size
     return (
       <div className={className}>
         <Card title={this.props.title}>
-          <IntensityCurve width={320} height={160} curve={this.props.curve} />
+          <IntensityCurve
+            size={this.props.size}
+            width={SIZES[this.props.size].w}
+            height={SIZES[this.props.size].h}
+            curve={this.props.curve}
+            publish={this.props.publish}
+            showGrid={this.props.showGrid}
+          />
         </Card>
       </div>
     );

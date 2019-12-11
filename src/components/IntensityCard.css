@@ -10,6 +10,11 @@
   flex-direction: column;
 }
 
+.IntensityCard-large .Card {
+  width: 34rem;
+  height: 24rem;
+}
+
 .IntensityCard-selected {
   box-shadow: 0 0 0 4px #FF7F37;
 }

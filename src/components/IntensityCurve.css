@@ -1,5 +1,6 @@
 .IntensityCurve {
-
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 
@@ -11,4 +12,34 @@
   stroke: #ff7f37;
   stroke-width: 4px;
   stroke-linecap: round;
+}
+
+.IntensityCurve ._grid line {
+  stroke: #ccc;
+  stroke-width: 1px;
+}
+
+.IntensityCurve ._gridLabel_left {
+  fill: #888;
+  text-anchor: end;
+  font-size: 0.75rem;
+  transform: translate(0, 0.25rem);
+  pointer-events: none;
+}
+
+.IntensityCurve ._point_handle {
+  fill: white;
+  stroke: #ff7f37;
+  stroke-width: 3px;
+  cursor: move;
+  transition: 0.125s ease;
+}
+
+.IntensityCurve ._point_handle.-move-only-vertical {
+  cursor: ns-resize;
+}
+
+.IntensityCurve ._point_handle:hover {
+  fill: #ff7f37;
+  stroke-width: 6px;
 }
