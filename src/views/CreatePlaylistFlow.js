@@ -20,7 +20,7 @@ class CreatePlaylistFlow extends React.Component {
     // 5: review
 
     this.state = {
-      step: 1,
+      step: 0,
       duration: 30,
     };
 
