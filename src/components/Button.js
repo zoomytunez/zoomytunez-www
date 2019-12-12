@@ -11,7 +11,7 @@ function Button(props) {
   }
 
   return (props.type === "link") ? (
-      <a onClick={props.onClick} className={className} disabled={props.disabled} href={props.href}>
+      <a onClick={props.onClick} className={className} disabled={props.disabled} href={props.href} target={props.target}>
         {props.children}
       </a>
     ) : (

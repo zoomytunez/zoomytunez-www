@@ -37,6 +37,7 @@ class CreatePlaylistFlow extends React.Component {
     this.previousStep = this.previousStep.bind(this);
     this.nextStep = this.nextStep.bind(this);
     this.commitMusic = this.commitMusic.bind(this);
+    this.createPlaylist = this.createPlaylist.bind(this);
   }
 
   previousStep() {
@@ -103,15 +104,21 @@ class CreatePlaylistFlow extends React.Component {
       curve
     }
 
-    this.createPlaylist(data)
+    this.setState({playlistCreateData: data}, this.createPlaylist)
   }
 
-  async createPlaylist(data) {
+  async createPlaylist() {
+    this.setState({
+      step: 4
+    })
     try {
-      const result = await zoomyCreatePlaylist(data);
-      console.log(result)
+      const result = await zoomyCreatePlaylist(this.state.playlistCreateData);
+      if (result.error) {
+        throw new Error(result.error)
+      }
       this.setState({
-        step: 5
+        step: 5,
+        playlistData: result
       })
     } catch (e) {
       this.setState({
@@ -157,7 +164,9 @@ class CreatePlaylistFlow extends React.Component {
           />
         : this.state.step === 5 ?
           <PlaylistReviewSubflow
-            back={this.commitMusic}
+            retry={this.createPlaylist}
+            data={this.state.playlistData}
+            curve={this.state.curve}
           />
         : /* this.state.step === 6 */
           <div>

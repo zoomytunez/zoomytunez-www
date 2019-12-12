@@ -2,6 +2,12 @@ import React from 'react';
 import './IntensityCurve.css';
 
 const PADDING = {
+  tiny: {
+    t: 4,
+    b: 4,
+    l: 4,
+    r: 4,
+  },
   small: {
     t: 8,
     b: 8,

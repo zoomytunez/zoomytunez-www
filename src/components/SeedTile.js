@@ -47,9 +47,15 @@ class SeedTile extends React.Component {
           }
         </div>
         {this.props.size === "large" &&
-          <div className="SeedTile-action">
-            <Icon icon={this.props.selected ? checkCircle : plusCircleOutline} width={24}/>
-          </div>
+          (this.props.showBPM ?
+            <div className="SeedTile-bpm">
+              {Math.round(this.props.data.bpm) + " bpm"}
+            </div>
+          :
+            <div className="SeedTile-action">
+              <Icon icon={this.props.selected ? checkCircle : plusCircleOutline} width={24}/>
+            </div>
+          )
         }
       </div>
     );

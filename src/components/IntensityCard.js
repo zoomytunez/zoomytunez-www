@@ -6,6 +6,10 @@ import IntensityCurve from './IntensityCurve';
 
 
 const SIZES = {
+  "tiny": {
+    w: 240,
+    h: 128
+  },
   "small": {
     w: 320,
     h: 160,

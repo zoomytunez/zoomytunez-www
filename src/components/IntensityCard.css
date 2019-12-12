@@ -10,6 +10,11 @@
   flex-direction: column;
 }
 
+.IntensityCard-tiny .Card {
+  width: 15rem;
+  height: 8rem;
+}
+
 .IntensityCard-large .Card {
   width: 34rem;
   height: 24rem;
