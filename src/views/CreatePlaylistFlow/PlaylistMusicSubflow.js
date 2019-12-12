@@ -11,6 +11,9 @@ import { search as spotifySearch } from '../../zoomy/api';
 
 import ActionCollapser from '../../util/ActionCollapser';
 
+import { Icon } from '@iconify/react';
+import minusCircleOutline from '@iconify/icons-mdi/minus-circle-outline';
+
 class PlaylistMusicSubflow extends React.Component {
   constructor(props) {
     super(props);
@@ -21,11 +24,11 @@ class PlaylistMusicSubflow extends React.Component {
       selected: [],
     };
 
-
     this.runSearch = this.runSearch.bind(this)
     this.updateSearch = this.updateSearch.bind(this)
     this.checkSelection = this.checkSelection.bind(this)
     this.addToSelection = this.addToSelection.bind(this)
+    this.removeFromSelection = this.removeFromSelection.bind(this)
 
     this.collapser = new ActionCollapser(this.runSearch, 750)
   }
@@ -46,11 +49,19 @@ class PlaylistMusicSubflow extends React.Component {
 
   addToSelection(data) {
     return () => {
-      if (!this.checkSelection(data)) {
+      if (!this.checkSelection(data) && this.state.selected.length < 5) {
         this.setState({
           selected: [...this.state.selected, data]
         })
       }
+    }
+  }
+
+  removeFromSelection(i) {
+    return () => {
+      this.setState({
+        selected: this.state.selected.filter((_, j) => i !== j)
+      })
     }
   }
 
@@ -78,13 +89,18 @@ class PlaylistMusicSubflow extends React.Component {
           subhead="We’ll use your selections to create a playlist that is uniquely you, but still new. "
         />
 
+        <HintText
+          heading="Search for artists and songs you love"
+          body="Choose up to five total. We’ll pick tracks for your new playlist based on your selections."
+        />
+
         <Card>
           <input
             className="PlaylistMusicSubflow-searchbox -focus-ring"
             type="search"
             value={this.state.search}
             onChange={this.updateSearch}
-            placeholder="Search for genres, artists, or songs"
+            placeholder="Search for artists or songs"
           />
 
           <div className="PlaylistMusicSubflow-results-area">
@@ -94,7 +110,7 @@ class PlaylistMusicSubflow extends React.Component {
                   <ul className="PlaylistMusicSubflow-results">
                     {
                       this.state.results.map((result, i) =>
-                        <li key={i}>
+                        <li key={result.uri}>
                           <button
                             onClick={this.addToSelection(result)}
                             className="-invisible-button -focus-ring"
@@ -135,18 +151,28 @@ class PlaylistMusicSubflow extends React.Component {
           </Button>
           <Button
             onClick={this.props.continue}
-            disabled={this.props.continue === null}>
+            disabled={!this.state.selected.length}>
             Create!
           </Button>
         </div>
 
-        <HintText
-          heading="Search for artists, songs, or genres you love"
-          body="Choose up to five total. We’ll pick tracks for your new playlist based on your selections."
-        />
-
-        <div className="">
-
+        <div className={"PlaylistMusicSubflow-selected" + (this.state.selected.length ? " -visible" : "")}>
+          {this.state.selected.map((result, i) =>
+            <button
+              key={result.uri}
+              onClick={this.removeFromSelection(i)}
+              className="-invisible-button -focus-ring"
+            >
+              <SeedTile
+                size="small"
+                data={result}
+                selected={this.checkSelection(result)}
+              />
+              <div className="PlaylistMusicSubflow-selection-fake-remove" role="presentation">
+                <Icon icon={minusCircleOutline} width={16}/>
+              </div>
+            </button>
+          )}
         </div>
 
       </div>

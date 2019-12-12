@@ -3,12 +3,16 @@ import './SeedTile.css';
 
 import { Icon } from '@iconify/react';
 import plusCircleOutline from '@iconify/icons-mdi/plus-circle-outline';
-import checkCircleOutline from '@iconify/icons-mdi/check-circle-outline';
+import checkCircle from '@iconify/icons-mdi/check-circle';
 
 class SeedTile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  static defaultProps = {
+    size: "large"
   }
 
   capitalize(str) {
@@ -32,17 +36,21 @@ class SeedTile extends React.Component {
       info.imageURL = imageList[imageList.length - 1].url;
     }
     return (
-      <div className="SeedTile">
+      <div className={"SeedTile SeedTile-" + this.props.size + " SeedTile__" + (this.props.selected ? "selected" : "unselected")}>
         <div className="SeedTile-image">
           {info.imageURL && <img src={info.imageURL} alt="cover art"/>}
         </div>
         <div className="SeedTile-body">
           <h4 title={info.primary}>{info.primary}</h4>
-          <p>{info.type}{info.secondary && " · " + info.secondary}</p>
+          {this.props.size === "large" &&
+            <p>{info.type}{info.secondary && " · " + info.secondary}</p>
+          }
         </div>
-        <div className="SeedTile-action">
-          <Icon icon={this.props.selected ? plusCircleOutline : checkCircleOutline} width={24}/>
-        </div>
+        {this.props.size === "large" &&
+          <div className="SeedTile-action">
+            <Icon icon={this.props.selected ? checkCircle : plusCircleOutline} width={24}/>
+          </div>
+        }
       </div>
     );
   }

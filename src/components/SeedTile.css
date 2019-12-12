@@ -5,6 +5,11 @@
   margin: 0;
 }
 
+.SeedTile-small {
+  flex-direction: column;
+  width: 8rem;
+}
+
 .SeedTile-image {
   margin-right: 0.5rem;
 }
@@ -17,6 +22,15 @@
 .SeedTile-body {
   text-align: left;
   flex-grow: 1;
+  width: 0;
+}
+
+.SeedTile-small .SeedTile-image {
+  margin: 0;
+}
+.SeedTile-small .SeedTile-body {
+  width: 100%;
+  text-align: center;
 }
 
 .SeedTile-body h4, .SeedTile-body p {
@@ -37,10 +51,10 @@
 }
 
 .SeedTile-action {
-  margin-right: 1rem;
+  margin: 1rem;
   color: rgba(0, 0, 0, 0.5);
 }
 
-.SeedTile:hover .SeedTile-action {
+.SeedTile__selected .SeedTile-action {
   color: #FF7F37;
 }
