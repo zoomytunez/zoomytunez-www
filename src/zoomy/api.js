@@ -42,6 +42,16 @@ export function createPlaylist(data) {
   })
 }
 
+export function renamePlaylist(id, name) {
+  return api("playlist/rename", {
+    "method": "post",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": JSON.stringify({id, name})
+  })
+}
+
 export function search(query, limit=50, offset=0) {
   return api("search?" + encode({q:query, limit, offset}))
 }

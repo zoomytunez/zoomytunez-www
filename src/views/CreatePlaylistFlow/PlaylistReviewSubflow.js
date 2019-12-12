@@ -9,22 +9,26 @@ import Card from '../../components/Card';
 import IntensityCard from '../../components/IntensityCard';
 import SeedTile from '../../components/SeedTile';
 
+import {renamePlaylist} from '../../zoomy/api';
+
 class PlaylistReviewSubflow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      playlistName: "ZoomyTunez Playlist",
+      playlistName: props.data.name,
       editingName: false
     };
 
     this.checkCommitName = this.checkCommitName.bind(this)
     this.inputName = this.inputName.bind(this)
     this.toggleUpdateName = this.toggleUpdateName.bind(this)
-
+    this.inputRef = this.inputRef.bind(this)
   }
 
   checkCommitName(evt) {
-
+    if (evt.key === "Enter") {
+      this.toggleUpdateName()
+    }
   }
 
   inputName(evt) {
@@ -36,15 +40,19 @@ class PlaylistReviewSubflow extends React.Component {
   toggleUpdateName() {
     const editing = this.state.editingName
     if (editing) {
-      // make name change request
+      renamePlaylist(this.props.data.id, this.state.playlistName)
     }
     this.setState({
       editingName: !editing
     })
   }
 
+  inputRef(node) {
+    node && node.focus();
+  }
 
   render() {
+
     return (
       <div className="PlaylistReviewSubflow -standard-step -step-extra-wide">
         <div className="PlaylistReviewSubflow-2col">
@@ -56,14 +64,16 @@ class PlaylistReviewSubflow extends React.Component {
             <h2>{this.state.editingName ?
                 <input
                   type="text"
+                  className="-focus-ring"
                   value={this.state.playlistName}
-                  onInput={this.inputName}
-                  onKeydown={this.checkCommitName}
+                  onChange={this.inputName}
+                  onKeyDown={this.checkCommitName}
+                  ref={this.inputRef}
                 />
               :
                 this.state.playlistName
               }
-              <button class="-invisible-button -focus-ring" click={this.toggleUpdateName}>
+              <button className="-invisible-button -focus-ring" onClick={this.toggleUpdateName}>
                 <InlineIcon icon={pencilIcon}/>
               </button>
             </h2>

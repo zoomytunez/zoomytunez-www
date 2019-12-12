@@ -18,9 +18,21 @@
   border-width: 0;
 }
 
+.PlaylistReviewSubflow-meta h2 {
+  max-width: 19rem;
+}
+
 .PlaylistReviewSubflow-meta h2 button {
   margin-left: 0.5rem;
   font-size: 1.25rem;
+}
+
+.PlaylistReviewSubflow-meta h2 input {
+  width: 16rem;
+  appearance: none;
+  border: 0;
+  padding: 2px 8px;
+  border-radius: 4px;
 }
 
 .PlaylistReviewSubflow-meta p {
