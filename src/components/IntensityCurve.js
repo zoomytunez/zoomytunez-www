@@ -127,7 +127,7 @@ class IntensityCurve extends React.Component {
     return (
       <g className="_handles">
         {this.props.curve.points.map((point, i) => {
-          if (i === this.state.dragging) return null;
+          // if (i === this.state.dragging) return null;
           const {x, y} = this.position(point)
           let className = "_point_handle"
           if (point.time === 0 || point.time === this.props.curve.duration) {

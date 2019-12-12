@@ -98,7 +98,7 @@ class PlaylistTemplateSubflow extends React.Component {
             TEMPLATES.map((template, i) =>
               <button
                 onClick={_=>this.set(i)}
-                className="-focus-ring"
+                className="-invisible-button -focus-ring"
                 key={template.title}
               >
                 <IntensityCard

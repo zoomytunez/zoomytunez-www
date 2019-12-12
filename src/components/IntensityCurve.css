@@ -32,7 +32,7 @@
   stroke: #ff7f37;
   stroke-width: 3px;
   cursor: move;
-  transition: 0.125s ease;
+  transition: stroke-width 0.125s ease, fill 0.125s ease;
 }
 
 .IntensityCurve ._point_handle.-move-only-vertical {

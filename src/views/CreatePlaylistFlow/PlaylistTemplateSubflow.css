@@ -7,17 +7,22 @@
 }
 
 .PlaylistTemplateSubflow-card-grid > button {
-  background: none;
-  border: 0;
-  margin: 0;
   margin-bottom: 2rem;
   margin-right: 2rem;
-  padding: 0;
   border-radius: 10px;
   font-family: inherit;
 }
 
-.PlaylistTemplateSubflow-card-grid > button > .IntensityCard {
+.-invisible-button {
+  appearance: none;
+  background: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  border-radius: 0.01px;
+}
+
+.-invisible-button > div {
   /* allows button contents to overflow on safari, ugh */
   position: relative;
 }

@@ -20,6 +20,34 @@
   color: #A9AEB8;
 }
 
+.PlaylistMusicSubflow-results-area {
+  margin-top: 1rem;
+}
+.PlaylistMusicSubflow-results {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.PlaylistMusicSubflow-results button {
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.PlaylistMusicSubflow-results button:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.PlaylistMusicSubflow-results > li {
+  margin-top: 0;
+}
+
+.PlaylistMusicSubflow-results > li > button {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+
 .PlaylistMusicSubflow .--placeholder {
   margin: 4rem 0 2rem;
   color: rgba(0, 0, 0, 0.6);

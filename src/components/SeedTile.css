@@ -1,0 +1,46 @@
+.SeedTile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+}
+
+.SeedTile-image {
+  margin-right: 0.5rem;
+}
+.SeedTile-image img {
+  width: 4rem;
+  height: 4rem;
+  vertical-align: top;
+}
+
+.SeedTile-body {
+  text-align: left;
+  flex-grow: 1;
+}
+
+.SeedTile-body h4, .SeedTile-body p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  height: 1.5rem;
+  width: 100%;
+}
+
+.SeedTile-body p {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.SeedTile-action {
+  margin-right: 1rem;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.SeedTile:hover .SeedTile-action {
+  color: #FF7F37;
+}

@@ -3,6 +3,7 @@ import './PlaylistMusicSubflow.css';
 
 import PageHeading from '../../components/PageHeading';
 import Button from '../../components/Button';
+import SeedTile from '../../components/SeedTile';
 import HintText from '../../components/HintText';
 import Card from '../../components/Card';
 
@@ -17,11 +18,14 @@ class PlaylistMusicSubflow extends React.Component {
       search: '',
       loading: true,
       results: [],
+      selected: [],
     };
 
 
     this.runSearch = this.runSearch.bind(this)
     this.updateSearch = this.updateSearch.bind(this)
+    this.checkSelection = this.checkSelection.bind(this)
+    this.addToSelection = this.addToSelection.bind(this)
 
     this.collapser = new ActionCollapser(this.runSearch, 750)
   }
@@ -36,12 +40,27 @@ class PlaylistMusicSubflow extends React.Component {
     }
   }
 
+  checkSelection(data) {
+    return this.state.selected.some(check => check.uri === data.uri)
+  }
+
+  addToSelection(data) {
+    return () => {
+      if (!this.checkSelection(data)) {
+        this.setState({
+          selected: [...this.state.selected, data]
+        })
+      }
+    }
+  }
+
   async runSearch(search) {
     this.setState({
       loading: true,
     })
     const data = await spotifySearch(search, 5);
     if (search !== this.state.search) return;
+    console.log(data)
     this.setState({
       loading: false,
     })
@@ -53,7 +72,7 @@ class PlaylistMusicSubflow extends React.Component {
 
   render() {
     return (
-      <div className="PlaylistMusicSubflow -standard-step -step-wide">
+      <div className="PlaylistMusicSubflow -standard-step">
         <PageHeading
           heading="Choose your music"
           subhead="We’ll use your selections to create a playlist that is uniquely you, but still new. "
@@ -72,8 +91,23 @@ class PlaylistMusicSubflow extends React.Component {
             {
               this.state.search ? (
                 this.state.results.length ?
-                  <div className="PlaylistMusicSubflow-results-area">
-                  </div>
+                  <ul className="PlaylistMusicSubflow-results">
+                    {
+                      this.state.results.map((result, i) =>
+                        <li key={i}>
+                          <button
+                            onClick={this.addToSelection(result)}
+                            className="-invisible-button -focus-ring"
+                          >
+                            <SeedTile
+                              data={result}
+                              selected={this.checkSelection(result)}
+                            />
+                          </button>
+                        </li>
+                      )
+                    }
+                  </ul>
                 : (
                   this.state.loading ?
                     <div className="--placeholder _loading">
@@ -81,7 +115,7 @@ class PlaylistMusicSubflow extends React.Component {
                     </div>
                   :
                     <div className="--placeholder _empty">
-                      We got nothing. Try again?
+                      We got nothing. Try something else?
                     </div>
                 )
               ) :
@@ -110,6 +144,11 @@ class PlaylistMusicSubflow extends React.Component {
           heading="Search for artists, songs, or genres you love"
           body="Choose up to five total. We’ll pick tracks for your new playlist based on your selections."
         />
+
+        <div className="">
+
+        </div>
+
       </div>
     );
   }
