@@ -54,6 +54,7 @@ class App extends React.Component {
     }).catch(() => {
       this.setState({
         "dead": true,
+        "ready": true,
       })
     })
   }
@@ -62,7 +63,7 @@ class App extends React.Component {
     return (
       <div className="App">
         {
-          this.state.dead ? "a horrible thing happened" :
+          //this.state.dead ? "a horrible thing happened" :
           !(this.state.ready && this.state.loggedIn) ?
             <Landing loading={!this.state.ready}/> :
           <AppView user={this.state.user} refreshUser={this.refreshUser} quickPublish={this.quickPublish}/>
