@@ -36,8 +36,8 @@ class PlaylistMusicSubflow extends React.Component {
 
   continue() {
     this.props.continue({
-      tracks: this.state.selected.filter(item=>item.type==="track").map(item=>item.uri),
-      artists: this.state.selected.filter(item=>item.type==="artist").map(item=>item.uri),
+      tracks: this.state.selected.filter(item=>item.type==="track").map(item=>item.id),
+      artists: this.state.selected.filter(item=>item.type==="artist").map(item=>item.id),
       genres: []
     })
   }
