@@ -32,6 +32,16 @@ export function setHeight(height) {
   })
 }
 
+export function createPlaylist(data) {
+  return api("playlist/build", {
+    "method": "post",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": JSON.stringify(data)
+  })
+}
+
 export function search(query, limit=50, offset=0) {
   return api("search?" + encode({q:query, limit, offset}))
 }

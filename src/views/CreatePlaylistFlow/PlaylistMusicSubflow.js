@@ -29,8 +29,17 @@ class PlaylistMusicSubflow extends React.Component {
     this.checkSelection = this.checkSelection.bind(this)
     this.addToSelection = this.addToSelection.bind(this)
     this.removeFromSelection = this.removeFromSelection.bind(this)
+    this.continue = this.continue.bind(this)
 
     this.collapser = new ActionCollapser(this.runSearch, 750)
+  }
+
+  continue() {
+    this.props.continue({
+      tracks: this.state.selected.filter(item=>item.type==="track").map(item=>item.uri),
+      artists: this.state.selected.filter(item=>item.type==="artist").map(item=>item.uri),
+      genres: []
+    })
   }
 
   updateSearch(evt) {
@@ -71,7 +80,6 @@ class PlaylistMusicSubflow extends React.Component {
     })
     const data = await spotifySearch(search, 5);
     if (search !== this.state.search) return;
-    console.log(data)
     this.setState({
       loading: false,
     })
@@ -150,7 +158,7 @@ class PlaylistMusicSubflow extends React.Component {
             Back
           </Button>
           <Button
-            onClick={this.props.continue}
+            onClick={this.continue}
             disabled={!this.state.selected.length}>
             Create!
           </Button>

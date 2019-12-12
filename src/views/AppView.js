@@ -47,6 +47,7 @@ class AppView extends React.Component {
               <HeightSetFlow refresh={this.props.refreshUser}/>
             : !(this.props.user.playlists && this.props.user.playlists.length) || !this.state.viewing ?
               <CreatePlaylistFlow
+                height={this.props.user.height}
                 refresh={this.props.refreshUser}
                 close={(this.props.user.playlists && this.props.user.playlists.length) ? this.toList : null}
               />

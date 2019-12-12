@@ -7,6 +7,12 @@ import PlaylistCustomizeSubflow from './CreatePlaylistFlow/PlaylistCustomizeSubf
 import PlaylistMusicSubflow from './CreatePlaylistFlow/PlaylistMusicSubflow';
 import PlaylistLoadingSubflow from './CreatePlaylistFlow/PlaylistLoadingSubflow';
 import PlaylistReviewSubflow from './CreatePlaylistFlow/PlaylistReviewSubflow';
+import Button from '../components/Button';
+
+import bpm from '../zoomy/bpm';
+import {createPlaylist as zoomyCreatePlaylist} from '../zoomy/api';
+
+const POINT_STEP_CHUNK_SIZE = 2 * 60
 
 class CreatePlaylistFlow extends React.Component {
   constructor(props) {
@@ -18,23 +24,12 @@ class CreatePlaylistFlow extends React.Component {
     // 3: music
     // 4: loading
     // 5: review
+    // 6: error
 
     this.state = {
       step: 0,
       duration: 30,
-      // curve: {
-      //   duration: 1800,
-      //   points: [
-      //     {
-      //       time: 0,
-      //       pace: 12
-      //     },
-      //     {
-      //       time: 1800,
-      //       pace: 12
-      //     }
-      //   ]
-      // }
+      curve: null
     };
 
     this.setDuration = this.setDuration.bind(this);
@@ -74,8 +69,55 @@ class CreatePlaylistFlow extends React.Component {
       step: 4
     })
 
-    // simulate loading for now...
-    window.setTimeout(this.nextStep, 3000)
+    const curve = {
+      duration: this.state.curve.duration,
+      points: []
+    }
+    const {points} = curve
+    this.state.curve.points.forEach((point, i) => {
+      if (i === this.state.curve.points.length - 1) return;
+
+      let nextPoint = this.state.curve.points[i + 1]
+
+      let startTime = point.time
+      let currentTime = startTime
+      let endTime = nextPoint.time
+
+      while (currentTime < endTime) {
+        let start = currentTime
+        let end = Math.min(endTime, start + POINT_STEP_CHUNK_SIZE)
+        let midpoint = (start + end) / 2
+        let norm = (midpoint - startTime) / (endTime - startTime)
+        let pace = norm * (nextPoint.pace - point.pace) + point.pace
+        points.push({
+          start,
+          end,
+          bpm: bpm({height: this.props.height, pace})
+        })
+        currentTime = end
+      }
+    })
+
+    const data = {
+      seeds,
+      curve
+    }
+
+    this.createPlaylist(data)
+  }
+
+  async createPlaylist(data) {
+    try {
+      const result = await zoomyCreatePlaylist(data);
+      console.log(result)
+      this.setState({
+        step: 5
+      })
+    } catch (e) {
+      this.setState({
+        step: 6
+      })
+    }
   }
 
   render() {
@@ -113,10 +155,21 @@ class CreatePlaylistFlow extends React.Component {
         : this.state.step === 4 ?
           <PlaylistLoadingSubflow
           />
-        : /* this.state.step === 5 */
+        : this.state.step === 5 ?
           <PlaylistReviewSubflow
             back={this.commitMusic}
           />
+        : /* this.state.step === 6 */
+          <div>
+            <h2>An error occured.</h2>
+            <Button
+              onClick={() => {
+                this.setState({
+                  step: 2,
+                })
+              }}
+            >Try again</Button>
+          </div>
         }
       </div>
     );
