@@ -10,6 +10,7 @@ import IntensityCard from '../../components/IntensityCard';
 import SeedTile from '../../components/SeedTile';
 
 import {renamePlaylist} from '../../zoomy/api';
+import bpm from '../../zoomy/bpm';
 
 class PlaylistReviewSubflow extends React.Component {
   constructor(props) {
@@ -52,13 +53,29 @@ class PlaylistReviewSubflow extends React.Component {
   }
 
   render() {
+    const curve = {}
+    curve.points = []
+    let timeTotal = 0
+    this.props.data.tracks.forEach(track => {
+      curve.points.push({
+        time: timeTotal,
+        pace: bpm.inverse({height: this.props.height, bpm: track.bpm})
+      })
+      timeTotal += track.duration_ms
+      curve.points.push({
+        time: timeTotal,
+        pace: bpm.inverse({height: this.props.height, bpm: track.bpm})
+      })
+
+    })
+    curve.duration = timeTotal
 
     return (
       <div className="PlaylistReviewSubflow -standard-step -step-extra-wide">
         <div className="PlaylistReviewSubflow-2col">
           <div className="PlaylistReviewSubflow-meta">
             <IntensityCard
-              curve={this.props.curve}
+              curve={curve}
               size="tiny"
             />
             <h2>{this.state.editingName ?
@@ -78,7 +95,7 @@ class PlaylistReviewSubflow extends React.Component {
               </button>
             </h2>
             <p>{this.props.data.tracks.length} songs · {
-              Math.round(this.props.data.tracks.reduce((l, r) => l + r.duration_ms, 0) / 1000 / 60)
+              Math.round(timeTotal / 1000 / 60)
             } minutes</p>
 
             <Button

@@ -29,7 +29,8 @@ class CreatePlaylistFlow extends React.Component {
     this.state = {
       step: 0,
       duration: 30,
-      curve: null
+      curve: null,
+      playlistData: {}
     };
 
     this.setDuration = this.setDuration.bind(this);
@@ -109,19 +110,28 @@ class CreatePlaylistFlow extends React.Component {
 
   async createPlaylist() {
     this.setState({
+      error: null,
       step: 4
     })
     try {
-      const result = await zoomyCreatePlaylist(this.state.playlistCreateData);
+      const createData = this.state.playlistCreateData
+      if (this.state.playlistData.id) {
+        createData.playlistID = this.state.playlistData.id
+      }
+      const result = await zoomyCreatePlaylist(createData);
       if (result.error) {
         throw new Error(result.error)
       }
       this.setState({
         step: 5,
-        playlistData: result
+        playlistData: {
+          ...this.state.playlistData,
+          ...result
+        }
       })
     } catch (e) {
       this.setState({
+        error: e.message,
         step: 6
       })
     }
@@ -167,10 +177,24 @@ class CreatePlaylistFlow extends React.Component {
             retry={this.createPlaylist}
             data={this.state.playlistData}
             curve={this.state.curve}
+            height={this.props.height}
           />
         : /* this.state.step === 6 */
-          <div>
+          <div className="-standard-step">
             <h2>An error occured.</h2>
+            {
+              this.state.error === "SMALL_RECOMMENDATION_POOL" ?
+                <p>
+                  We couldn’t generate enough recommendations based on your choices.
+                  Try making different selections. If the problem persists, check that your height is set correctly in your profile.
+                </p>
+              :
+                <p>
+                  An error occured while creating your playlist. Reloading the page usually helps.
+                </p>
+            }
+
+
             <Button
               onClick={() => {
                 this.setState({
